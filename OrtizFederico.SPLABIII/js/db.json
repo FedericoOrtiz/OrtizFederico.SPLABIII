@@ -1,0 +1,24 @@
+{
+  "anuncios": [
+    {
+      "id": 1,
+      "titulo": "Ford Mustang",
+      "transaccion": "Venta",
+      "descripcion": "Mod 67´ Impoluto",
+      "precio": "15000",
+      "puertas": "2",
+      "kms": "25000",
+      "potencia": "222"
+    },
+    {
+      "id": 2,
+      "titulo": "Porsche 911",
+      "transaccion": "Venta",
+      "descripcion": "Descapotable",
+      "precio": "20000",
+      "puertas": "2",
+      "kms": "20000",
+      "potencia": "350"
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./js/anunciosScript.js" type="module" defer></script>
+    <title>BackOffice</title>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <img src="imagenes/mainlogo.png" alt="Logo Empresa" id="logo">
+            <ul class="nav-content">
+                <li><a href="index.html">Nosotros</a></li>
+                <li><a href="anuncios.html">Anuncios</a></li>
+                <li><a href="">Blog</a></li>
+                <li><a href="">Contacto</a></li>
+            </ul>
+        </nav>
+        
+        <section>
+            <div class="container">
+                <h1 class="titulo">Administración</h1>
+                <div class="backgroundImg"></div>
+            </div>
+        </section>
+    </header>
+    
+    <main>
+        <fieldset>
+            <legend>Información del Anuncio</legend>
+            <form>
+                <input type="hidden" name="formId" id="id">
+                
+                <label for="txtTitulo">Título</label> <br>
+                <input type="text" id="txtTitulo" name="txtTitulo" placeholder="Ingrese el titulo" required> <br>
+                
+                <label for="sctTransaccion">Transacción</label> <br> <br>
+                <label> Venta <input type="radio" name="sctTransaccion" value="Venta" checked/></label>
+                <label> Alquiler <input type="radio" name="sctTransaccion" value="Alquiler"/></label>
+
+
+                <label for="txtDesc">Descripción</label> <br>
+                <input type="text" id="txtDesc" name="txtDesc" placeholder="Ingrese la descripcion" required>
+                
+                <label for="numPrecio">Precio (U$D)</label> <br>
+                <input type="number" id="numPrecio" name="numPrecio" placeholder="Ingrese el precio" min="1000"
+                max="1000000" required>
+                
+                <div class="icons">
+                    <span><img src="./imagenes/door.png" alt="Icon Puertas"></span>
+                    <input type="number" name="numPuertas" id="numPuertas" min="2" max="5" placeholder="Puertas"
+                    class="inputIcon" required>
+                    
+                    <span><img src="./imagenes/tachometer.png" alt="Icon KM"></span>
+                    <input type="number" name="numKM" id="numKM" min="0" max="300000" placeholder="KMs"  class="inputIcon" required>
+                    
+                    <span><img src="./imagenes/engine.png" alt="Icon Power"></span>
+                    <input type="number" name="numPower" id="numPower" min="100" max="600" placeholder="Potencia" class="inputIcon"
+                    required>
+                </div>
+
+                <!-- <label for="sctOrigen">Origen</label> <br> <br>
+                <label> Americano <input type="radio" name="sctOrigen" value="Americano" checked/></label>
+                <label> Japonés <input type="radio" name="sctOrigen" value="Japonés"/></label>
+                <label> Alemán <input type="radio" name="sctOrigen" value="Alemán"/></label>
+                <label> Italiano <input type="radio" name="sctOrigen" value="Italiano"/></label> -->
+                
+            </fieldset>
+            
+            <button type="submit" id="btnSubmit" class="formButtons">
+                <span><img src="./imagenes/save.png" alt="" id="icon"></span>
+                Guardar
+            </button>
+            <button type="reset" id="btnCancelar" class="formButtons">
+                <span><img src="./imagenes/cancel.png" alt=""></span>
+                Cancelar
+            </button>
+            <button type="submit" id="btnActualizar" class="formButtons hidden">
+                <span><img src="./imagenes/modify.png" alt=""></span>
+                Actualizar
+            </button>
+            <button type="remove" id="btnEliminar" class="formButtons hidden">
+                <span><img src="./imagenes/delete.png" alt=""></span>
+                Eliminar
+            </button>
+        </form>
+        
+        <div id="alert">
+            
+        </div>
+        
+        <div id="spinner">
+            
+        </div>
+
+        <div class="container filtro">
+            <div class="row text-center ">
+                <div class="col-5 pt-4 center-block">
+                    <div class="dropdown">
+                        <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Filtros:
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <button class="dropdown-item" id="btnFiltroTodos" type="button">Todos</button>
+                            <button class="dropdown-item" id="btnFiltroAlquiler" type="button">Alquiler</button>
+                            <button class="dropdown-item" id="btnFiltroVenta" type="button">Venta</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <label class="col-form-label">Promedio</label>
+                    <div class="pb-3">
+                        <input class="form-control" type="text" id="txtFiltro" value="N/A" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container pt-3 text-center">
+            <div class="row">
+                <div class="container pb-3 text-center">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cBoxid">
+                            <input class="cBox form-check-input" type="checkbox" id="cBoxid" checked>Id</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cBoxtitulo">
+                            <input class="cBox form-check-input" type="checkbox" id="cBoxtitulo" checked>Titulo</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cBoxtransaccion"> 
+                            <input class="cBox form-check-input" type="checkbox" id="cBoxtransaccion" checked>Transaccion</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cBoxdescripcion"><input class="cBox form-check-input"
+                                type="checkbox" id="cBoxdescripcion" checked>Descripcion</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cBoxprecio"><input class="cBox form-check-input"
+                                type="checkbox" id="cBoxprecio" checked>Precio</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cBoxpuertas"><input class="cBox form-check-input"
+                                type="checkbox" id="cBoxpuertas" checked>Puertas</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cBoxkms"><input class="cBox form-check-input"
+                                type="checkbox" id="cBoxkms" checked>Kms</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" for="cBoxpotencia"><input class="cBox form-check-input"
+                                type="checkbox" id="cBoxpotencia" checked>Potencia</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <section>
+            <div id="divTabla">
+                <div class="row text-center table-responsive " id="divTabla"></div>
+            </div>
+        </section>
+
+        
+        <footer>
+            <nav>
+                <img src="imagenes/mainlogo.png" alt="Logo Empresa" id="logo">
+                <p id="copyright"> <i> Todos los derechos reservados 2022 &copy; </i> </p>
+                <ul>
+                    <li> <a href="index.html">Nosotros</a> </li>
+                    <li> <a href="anuncios.html">Anuncios</a> </li>
+                    <li> <a href="">Blog</a> </li>
+                    <li> <a href="">Contacto</a> </li>
+                </ul>
+            </nav>
+        </footer>
+        
+        
+    </main>
+
+</body>
+</html>
